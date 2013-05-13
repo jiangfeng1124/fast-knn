@@ -37,8 +37,8 @@ if __name__ == '__main__':
     tree = spatial.KDTree(embedding)
     print >> sys.stderr, "... Done build KD Tree"
 
+    distances, indexes = tree.query(embedding, k=options.k+1)
     for i,w in enumerate(word_map):
-        distance, indexes = tree.query(embedding[i], k=options.k+1)
         print "%s :" % w,
-        print " ".join([word_map[j] for j in list(indexes)[1:]])
+        print " ".join([word_map[j] for j in list(indexes[i])[1:]])
 
